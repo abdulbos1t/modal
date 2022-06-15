@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+
+<!-- STYLE CSS -->
+<style>
+    .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.show-btn {
+    margin-top: 50px;
+  background-color: #474b4f;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.5s;
+}
+
+.show-btn:hover {
+  background-color: #3a3d40;
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+    margin-left: auto;
+  color: #222;
+  font-size: 20px;
+}
+
+.modal-title {
+  margin-bottom: 15px;
+}
+
+/* overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+</style>
+<!-- STYLE CSS -->
+
+    
+</head>
+<body>
+    <div class="wrapper">
+        <button class="btn show-btn" id="show-btn">
+          Show Modal
+        </button>
+  
+        <!-- MODAL -->
+        <div class="modal hidden" id="modal">
+          <!-- MODAL HEADER -->
+          <div class="modal-header">
+            <img src="./close.svg" class="btn close-btn" id="close-btn"></img>
+          </div>
+  
+          <!-- MODAL BODY -->
+          <div class="modal-body">
+            <h2 class="modal-title">Modal Title</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+              voluptate quis quibusdam officiis, ea modi cumque ipsa reiciendis.
+              Dolore voluptatum officia totam veritatis iste. Ut tempore veniam
+              aperiam itaque culpa, eius dolores ratione impedit, eum ipsam nemo
+              quae quis in corporis deserunt totam. Voluptas, magni.
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- OVERLAY -->
+      <div class="overlay hidden" id="overlay"></div>
+
+
+      <!-- SCRIPT -->
+      <script>
+        const showBtn = document.getElementById('show-btn')
+const modal = document.getElementById('modal')
+const closeBtn = document.getElementById('close-btn')
+const overlay = document.getElementById('overlay')
+
+// add classList hidden
+const addHidden = () => {
+  modal.classList.add('hidden')
+  overlay.classList.add('hidden')
+}
+
+// remove classList hidden
+const removeHidden = () => {
+  modal.classList.remove('hidden')
+  overlay.classList.remove('hidden')
+}
+
+showBtn.addEventListener('click', removeHidden)
+
+closeBtn.addEventListener('click', addHidden)
+
+overlay.addEventListener('click', addHidden)
+
+document.addEventListener('keydown', (e) => {
+  if (e.key == 'Escape') {
+    addHidden()
+  }
+})
+      </script>
+</body>
+</html>
